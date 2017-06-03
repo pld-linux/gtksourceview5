@@ -5,13 +5,13 @@
 
 Summary:	Text widget that extends the standard GTK+ 3.x
 Summary(pl.UTF-8):	Widget tekstowy rozszerzający standardowy z GTK+ 3.x
-Name:		gtksourceview3
-Version:	3.24.2
+Name:		gtksourceview4
+Version:	3.99.4
 Release:	1
 License:	LGPL v2+ (library), GPL v2+ (some language specs files)
 Group:		X11/Libraries
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/gtksourceview/3.24/gtksourceview-%{version}.tar.xz
-# Source0-md5:	50aa4d94c1c19f18c4586a24ddd42cfb
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/gtksourceview/3.99/gtksourceview-%{version}.tar.xz
+# Source0-md5:	f6e7fe9523dcb0cba237062eca2f023a
 URL:		http://www.gnome.org/
 BuildRequires:	autoconf >= 2.64
 BuildRequires:	autoconf-archive >= 2015.09.25
@@ -20,7 +20,7 @@ BuildRequires:	docbook-dtd412-xml
 BuildRequires:	gettext-tools >= 0.19.4
 BuildRequires:	glib2-devel >= 1:2.48.0
 BuildRequires:	gobject-introspection-devel >= 1.42.0
-BuildRequires:	gtk+3-devel >= 3.20.0
+BuildRequires:	gtk+3-devel >= 3.20
 BuildRequires:	gtk-doc >= 1.25
 BuildRequires:	itstool
 %if %{with glade}
@@ -34,7 +34,7 @@ BuildRequires:	tar >= 1:1.22
 BuildRequires:	vala
 BuildRequires:	xz
 Requires:	glib2 >= 1:2.48.0
-Requires:	gtk+3 >= 3.20.0
+Requires:	gtk+3 >= 3.20
 Requires:	libxml2 >= 1:2.6.31
 # sr@Latn vs. sr@latin
 Conflicts:	glibc-misc < 6:2.7
@@ -72,7 +72,7 @@ Summary(pl.UTF-8):	Pliki nagłówkowe dla GtkSourceView
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	glib2-devel >= 1:2.48.0
-Requires:	gtk+3-devel >= 3.20.0
+Requires:	gtk+3-devel >= 3.20
 Requires:	libxml2-devel >= 1:2.6.31
 
 %description devel
@@ -106,7 +106,7 @@ Glade3 catalog entry for GtkSourceView library.
 %description -n glade3-gtksourceview -l pl.UTF-8
 Wpis katalogu Glade3 dla biblioteki GtkSourceView.
 
-%package -n vala-gtksourceview
+%package -n vala-gtksourceview4
 Summary:	GtkSourceView API for Vala language
 Summary(pl.UTF-8):	API GtkSourceView dla języka Vala
 Group:		Development/Libraries
@@ -116,10 +116,10 @@ Requires:	vala
 BuildArch:	noarch
 %endif
 
-%description -n vala-gtksourceview
+%description -n vala-gtksourceview4
 GtkSourceView API for Vala language.
 
-%description -n vala-gtksourceview -l pl.UTF-8
+%description -n vala-gtksourceview4 -l pl.UTF-8
 API GtkSourceView dla języka Vala.
 
 %prep
@@ -151,7 +151,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/*.la
 
-%find_lang gtksourceview-3.0
+%find_lang gtksourceview-4
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -159,27 +159,27 @@ rm -rf $RPM_BUILD_ROOT
 %post   -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
 
-%files -f gtksourceview-3.0.lang
+%files -f gtksourceview-4.lang
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libgtksourceview-3.0.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libgtksourceview-3.0.so.1
-%{_datadir}/gtksourceview-3.0
-%{_libdir}/girepository-1.0/GtkSource-3.0.typelib
+%attr(755,root,root) %{_libdir}/libgtksourceview-4.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libgtksourceview-4.so.0
+%{_datadir}/gtksourceview-4
+%{_libdir}/girepository-1.0/GtkSource-4.typelib
 
 %files apidocs
 %defattr(644,root,root,755)
-%{_gtkdocdir}/gtksourceview-3.0
+%{_gtkdocdir}/gtksourceview-4.0
 
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libgtksourceview-3.0.so
-%{_includedir}/gtksourceview-3.0
-%{_pkgconfigdir}/gtksourceview-3.0.pc
-%{_datadir}/gir-1.0/GtkSource-3.0.gir
+%attr(755,root,root) %{_libdir}/libgtksourceview-4.so
+%{_includedir}/gtksourceview-4
+%{_pkgconfigdir}/gtksourceview-4.pc
+%{_datadir}/gir-1.0/GtkSource-4.gir
 
 %files static
 %defattr(644,root,root,755)
-%{_libdir}/libgtksourceview-3.0.a
+%{_libdir}/libgtksourceview-4.a
 
 %if %{with glade}
 %files -n glade3-gtksourceview
@@ -188,8 +188,8 @@ rm -rf $RPM_BUILD_ROOT
 %endif
 
 %if %{with vala}
-%files -n vala-gtksourceview
+%files -n vala-gtksourceview4
 %defattr(644,root,root,755)
-%{_datadir}/vala/vapi/gtksourceview-3.0.deps
-%{_datadir}/vala/vapi/gtksourceview-3.0.vapi
+%{_datadir}/vala/vapi/gtksourceview-4.deps
+%{_datadir}/vala/vapi/gtksourceview-4.vapi
 %endif
