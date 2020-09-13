@@ -8,19 +8,19 @@
 Summary:	Text widget that extends the standard GTK+ 3.x
 Summary(pl.UTF-8):	Widget tekstowy rozszerzający standardowy z GTK+ 3.x
 Name:		gtksourceview4
-Version:	4.6.1
+Version:	4.8.0
 Release:	1
 License:	LGPL v2+ (library), GPL v2+ (some language specs files)
 Group:		X11/Libraries
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/gtksourceview/4.6/gtksourceview-%{version}.tar.xz
-# Source0-md5:	4d4cff3a57a371bff4793e97d50404ef
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/gtksourceview/4.8/gtksourceview-%{version}.tar.xz
+# Source0-md5:	5d4e599c298251691ca0fb5cb08130f0
 URL:		https://wiki.gnome.org/Projects/GtkSourceView
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	fribidi-devel >= 0.19.7
 BuildRequires:	gettext-tools >= 0.19.4
 BuildRequires:	glib2-devel >= 1:2.48.0
 BuildRequires:	gobject-introspection-devel >= 1.42.0
-BuildRequires:	gtk+3-devel >= 3.22
+BuildRequires:	gtk+3-devel >= 3.24
 %{?with_apidocs:BuildRequires:	gtk-doc >= 1.25}
 BuildRequires:	itstool
 %if %{with glade}
@@ -38,10 +38,8 @@ BuildRequires:	vala
 BuildRequires:	xz
 Requires:	fribidi >= 0.19.7
 Requires:	glib2 >= 1:2.48.0
-Requires:	gtk+3 >= 3.22
+Requires:	gtk+3 >= 3.24
 Requires:	libxml2 >= 1:2.6.31
-# sr@Latn vs. sr@latin
-Conflicts:	glibc-misc < 6:2.7
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -62,7 +60,7 @@ Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	fribidi-devel >= 0.19.7
 Requires:	glib2-devel >= 1:2.48.0
-Requires:	gtk+3-devel >= 3.22
+Requires:	gtk+3-devel >= 3.24
 Requires:	libxml2-devel >= 1:2.6.31
 
 %description devel
@@ -88,7 +86,7 @@ Summary:	GtkSourceView API documentation
 Summary(pl.UTF-8):	Dokumentacja API GtkSourceView
 Group:		Documentation
 Requires:	gtk-doc-common
-%if "%{_rpmversion}" >= "5"
+%if "%{_rpmversion}" >= "4.6"
 BuildArch:	noarch
 %endif
 
@@ -117,7 +115,7 @@ Summary(pl.UTF-8):	API GtkSourceView dla języka Vala
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 Requires:	vala
-%if "%{_rpmversion}" >= "5"
+%if "%{_rpmversion}" >= "4.6"
 BuildArch:	noarch
 %endif
 
