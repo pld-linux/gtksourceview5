@@ -166,9 +166,11 @@ rm -rf $RPM_BUILD_ROOT
 %{_pkgconfigdir}/gtksourceview-4.pc
 %{_datadir}/gir-1.0/GtkSource-4.gir
 
+%if %{with static_libs}
 %files static
 %defattr(644,root,root,755)
 %{_libdir}/libgtksourceview-4.a
+%endif
 
 %if %{with apidocs}
 %files apidocs
