@@ -7,24 +7,23 @@
 Summary:	Text widget that extends the standard GTK+ 3.x
 Summary(pl.UTF-8):	Widget tekstowy rozszerzający standardowy z GTK+ 3.x
 Name:		gtksourceview5
-Version:	4.99.0
+Version:	5.0.0
 Release:	1
 License:	LGPL v2+ (library), GPL v2+ (some language specs files)
 Group:		X11/Libraries
-Source0:	https://download.gnome.org/sources/gtksourceview/4.99/gtksourceview-%{version}.tar.xz
-# Source0-md5:	7b7a6f74d2dc459b8687f9bf6ae13bfa
-Patch0:		%{name}-meson.patch
+Source0:	https://download.gnome.org/sources/gtksourceview/5.0/gtksourceview-%{version}.tar.xz
+# Source0-md5:	5e2241325697706341b5f6e6edba617e
 URL:		https://wiki.gnome.org/Projects/GtkSourceView
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	fribidi-devel >= 0.19.7
 BuildRequires:	gettext-tools >= 0.19.4
-BuildRequires:	glib2-devel >= 1:2.62
+BuildRequires:	glib2-devel >= 1:2.66
 BuildRequires:	gobject-introspection-devel >= 1.42.0
-BuildRequires:	gtk4-devel >= 3.99
+BuildRequires:	gtk4-devel >= 4.1
 %{?with_apidocs:BuildRequires:	gtk-doc >= 1.25}
 BuildRequires:	itstool
 BuildRequires:	libxml2-devel >= 1:2.6.31
-BuildRequires:	meson >= 0.50.0
+BuildRequires:	meson >= 0.53.0
 BuildRequires:	ninja >= 1.5
 BuildRequires:	pcre2-8-devel >= 10.21
 BuildRequires:	pkgconfig
@@ -36,8 +35,8 @@ BuildRequires:	tar >= 1:1.22
 BuildRequires:	vala
 BuildRequires:	xz
 Requires:	fribidi >= 0.19.7
-Requires:	glib2 >= 1:2.62
-Requires:	gtk4 >= 3.99
+Requires:	glib2 >= 1:2.66
+Requires:	gtk4 >= 4.1
 Requires:	libxml2 >= 1:2.6.31
 Requires:	pcre2-8 >= 10.21
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -59,8 +58,8 @@ Summary(pl.UTF-8):	Pliki nagłówkowe dla GtkSourceView
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	fribidi-devel >= 0.19.7
-Requires:	glib2-devel >= 1:2.62
-Requires:	gtk4-devel >= 3.99
+Requires:	glib2-devel >= 1:2.66
+Requires:	gtk4-devel >= 4.1
 Requires:	libxml2-devel >= 1:2.6.31
 Requires:	pcre2-8-devel >= 10.21
 
@@ -111,7 +110,6 @@ API GtkSourceView dla języka Vala.
 
 %prep
 %setup -q -n gtksourceview-%{version}
-%patch0 -p1
 
 %if %{with static_libs}
 %{__sed} -i -e 's/gtksource_lib = shared_library/gtksource_lib = library/' gtksourceview/meson.build
