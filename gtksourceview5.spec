@@ -1,25 +1,26 @@
 #
 # Conditional build:
-%bcond_without	apidocs		# API documentation (broken in 4.99)
+%bcond_without	apidocs		# API documentation
 %bcond_without	static_libs	# static library
+%bcond_with	sysprof		# sysprof profiler support
 %bcond_without	vala		# do not build Vala API
 
 Summary:	Text widget that extends the standard GTK+ 3.x
 Summary(pl.UTF-8):	Widget tekstowy rozszerzający standardowy z GTK+ 3.x
 Name:		gtksourceview5
-Version:	5.0.0
+Version:	5.2.0
 Release:	1
 License:	LGPL v2+ (library), GPL v2+ (some language specs files)
 Group:		X11/Libraries
-Source0:	https://download.gnome.org/sources/gtksourceview/5.0/gtksourceview-%{version}.tar.xz
-# Source0-md5:	5e2241325697706341b5f6e6edba617e
+Source0:	https://download.gnome.org/sources/gtksourceview/5.2/gtksourceview-%{version}.tar.xz
+# Source0-md5:	0258374209704cc595b00000e93e3c4d
 URL:		https://wiki.gnome.org/Projects/GtkSourceView
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	fribidi-devel >= 0.19.7
 BuildRequires:	gettext-tools >= 0.19.4
 BuildRequires:	glib2-devel >= 1:2.66
 BuildRequires:	gobject-introspection-devel >= 1.42.0
-BuildRequires:	gtk4-devel >= 4.1
+BuildRequires:	gtk4-devel >= 4.2
 %{?with_apidocs:BuildRequires:	gtk-doc >= 1.25}
 BuildRequires:	itstool
 BuildRequires:	libxml2-devel >= 1:2.6.31
@@ -31,12 +32,13 @@ BuildRequires:	rpm-build >= 4.6
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.736
 BuildRequires:	sed >= 4.0
+%{?with_sysprof:BuildRequires:	sysprof-devel >= 3.38}
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	vala
 BuildRequires:	xz
 Requires:	fribidi >= 0.19.7
 Requires:	glib2 >= 1:2.66
-Requires:	gtk4 >= 4.1
+Requires:	gtk4 >= 4.2
 Requires:	libxml2 >= 1:2.6.31
 Requires:	pcre2-8 >= 10.21
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -59,7 +61,7 @@ Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	fribidi-devel >= 0.19.7
 Requires:	glib2-devel >= 1:2.66
-Requires:	gtk4-devel >= 4.1
+Requires:	gtk4-devel >= 4.2
 Requires:	libxml2-devel >= 1:2.6.31
 Requires:	pcre2-8-devel >= 10.21
 
@@ -117,7 +119,8 @@ API GtkSourceView dla języka Vala.
 
 %build
 %meson build \
-	%{?with_apidocs:-Dgtk_doc=true}
+	%{?with_apidocs:-Dgtk_doc=true} \
+	%{?with_sysprof:-Dsysprof=true}
 
 %ninja_build -C build
 
