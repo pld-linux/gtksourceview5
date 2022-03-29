@@ -8,24 +8,26 @@
 Summary:	Text widget that extends the standard GTK+ 3.x
 Summary(pl.UTF-8):	Widget tekstowy rozszerzający standardowy z GTK+ 3.x
 Name:		gtksourceview5
-Version:	5.2.0
+Version:	5.4.0
 Release:	1
 License:	LGPL v2+ (library), GPL v2+ (some language specs files)
 Group:		X11/Libraries
-Source0:	https://download.gnome.org/sources/gtksourceview/5.2/gtksourceview-%{version}.tar.xz
-# Source0-md5:	0258374209704cc595b00000e93e3c4d
+Source0:	https://download.gnome.org/sources/gtksourceview/5.4/gtksourceview-%{version}.tar.xz
+# Source0-md5:	ab90544ba01611b1bbe914798ea73e67
 URL:		https://wiki.gnome.org/Projects/GtkSourceView
 BuildRequires:	docbook-dtd412-xml
+BuildRequires:	fontconfig-devel
 BuildRequires:	fribidi-devel >= 0.19.7
 BuildRequires:	gettext-tools >= 0.19.4
-BuildRequires:	glib2-devel >= 1:2.66
-BuildRequires:	gobject-introspection-devel >= 1.42.0
-BuildRequires:	gtk4-devel >= 4.2
-%{?with_apidocs:BuildRequires:	gtk-doc >= 1.25}
+%{?with_apidocs:BuildRequires:	gi-docgen}
+BuildRequires:	glib2-devel >= 1:2.70
+BuildRequires:	gobject-introspection-devel >= 1.70.0
+BuildRequires:	gtk4-devel >= 4.5
 BuildRequires:	itstool
 BuildRequires:	libxml2-devel >= 1:2.6.31
-BuildRequires:	meson >= 0.53.0
+BuildRequires:	meson >= 0.59.0
 BuildRequires:	ninja >= 1.5
+BuildRequires:	pango-devel
 BuildRequires:	pcre2-8-devel >= 10.21
 BuildRequires:	pkgconfig
 BuildRequires:	rpm-build >= 4.6
@@ -37,8 +39,8 @@ BuildRequires:	tar >= 1:1.22
 BuildRequires:	vala
 BuildRequires:	xz
 Requires:	fribidi >= 0.19.7
-Requires:	glib2 >= 1:2.66
-Requires:	gtk4 >= 4.2
+Requires:	glib2 >= 1:2.70
+Requires:	gtk4 >= 4.5
 Requires:	libxml2 >= 1:2.6.31
 Requires:	pcre2-8 >= 10.21
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -60,8 +62,8 @@ Summary(pl.UTF-8):	Pliki nagłówkowe dla GtkSourceView
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	fribidi-devel >= 0.19.7
-Requires:	glib2-devel >= 1:2.66
-Requires:	gtk4-devel >= 4.2
+Requires:	glib2-devel >= 1:2.70
+Requires:	gtk4-devel >= 4.5
 Requires:	libxml2-devel >= 1:2.6.31
 Requires:	pcre2-8-devel >= 10.21
 
@@ -129,6 +131,12 @@ rm -rf $RPM_BUILD_ROOT
 
 %ninja_install -C build
 
+%if %{with apidocs}
+# FIXME: where to package gi-docgen generated docs?
+install -d $RPM_BUILD_ROOT%{_gtkdocdir}
+%{__mv} $RPM_BUILD_ROOT%{_docdir}/gtksourceview5 $RPM_BUILD_ROOT%{_gtkdocdir}
+%endif
+
 %find_lang gtksourceview-5
 
 %clean
@@ -162,7 +170,7 @@ rm -rf $RPM_BUILD_ROOT
 %if %{with apidocs}
 %files apidocs
 %defattr(644,root,root,755)
-%{_gtkdocdir}/gtksourceview-5.0
+%{_gtkdocdir}/gtksourceview5
 %endif
 
 %if %{with vala}
