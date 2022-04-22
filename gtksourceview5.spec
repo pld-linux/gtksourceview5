@@ -1,3 +1,4 @@
+# TODO: use gtk4-update-icon-cache
 #
 # Conditional build:
 %bcond_without	apidocs		# API documentation
@@ -8,12 +9,13 @@
 Summary:	Text widget that extends the standard GTK+ 3.x
 Summary(pl.UTF-8):	Widget tekstowy rozszerzający standardowy z GTK+ 3.x
 Name:		gtksourceview5
-Version:	5.4.0
+Version:	5.4.1
 Release:	1
 License:	LGPL v2+ (library), GPL v2+ (some language specs files)
 Group:		X11/Libraries
 Source0:	https://download.gnome.org/sources/gtksourceview/5.4/gtksourceview-%{version}.tar.xz
-# Source0-md5:	ab90544ba01611b1bbe914798ea73e67
+# Source0-md5:	dc9c3fdb3a16f4add937334421149b34
+Patch0:		%{name}-no-update.patch
 URL:		https://wiki.gnome.org/Projects/GtkSourceView
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	fontconfig-devel
@@ -114,6 +116,7 @@ API GtkSourceView dla języka Vala.
 
 %prep
 %setup -q -n gtksourceview-%{version}
+%patch0 -p1
 
 %if %{with static_libs}
 %{__sed} -i -e 's/gtksource_lib = shared_library/gtksource_lib = library/' gtksourceview/meson.build
