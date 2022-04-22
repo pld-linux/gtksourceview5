@@ -1,0 +1,8 @@
+--- gtksourceview-5.4.1/meson.build.orig	2022-04-21 22:17:09.000000000 +0200
++++ gtksourceview-5.4.1/meson.build	2022-04-22 06:27:14.610456491 +0200
+@@ -342,5 +342,3 @@ summary({
+   'Vala vapi': generate_vapi,
+   }, bool_yn: true,
+ )
+-
+-gnome.post_install(gtk_update_icon_cache: true)
