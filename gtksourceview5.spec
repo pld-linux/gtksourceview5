@@ -9,12 +9,12 @@
 Summary:	Text widget that extends the standard GTK+ 3.x
 Summary(pl.UTF-8):	Widget tekstowy rozszerzający standardowy z GTK+ 3.x
 Name:		gtksourceview5
-Version:	5.4.2
+Version:	5.6.1
 Release:	1
 License:	LGPL v2+ (library), GPL v2+ (some language specs files)
 Group:		X11/Libraries
-Source0:	https://download.gnome.org/sources/gtksourceview/5.4/gtksourceview-%{version}.tar.xz
-# Source0-md5:	f0cba1f8f0552cb98f0b247bea3b1651
+Source0:	https://download.gnome.org/sources/gtksourceview/5.6/gtksourceview-%{version}.tar.xz
+# Source0-md5:	5fc634b04fbdbfcc17f9f8d85f817b60
 Patch0:		%{name}-no-update.patch
 URL:		https://wiki.gnome.org/Projects/GtkSourceView
 BuildRequires:	docbook-dtd412-xml
@@ -22,12 +22,12 @@ BuildRequires:	fontconfig-devel
 BuildRequires:	fribidi-devel >= 0.19.7
 BuildRequires:	gettext-tools >= 0.19.4
 %{?with_apidocs:BuildRequires:	gi-docgen}
-BuildRequires:	glib2-devel >= 1:2.70
+BuildRequires:	glib2-devel >= 1:2.72
 BuildRequires:	gobject-introspection-devel >= 1.70.0
-BuildRequires:	gtk4-devel >= 4.5
+BuildRequires:	gtk4-devel >= 4.6
 BuildRequires:	itstool
 BuildRequires:	libxml2-devel >= 1:2.6.31
-BuildRequires:	meson >= 0.59.0
+BuildRequires:	meson >= 0.60.0
 BuildRequires:	ninja >= 1.5
 BuildRequires:	pango-devel
 BuildRequires:	pcre2-8-devel >= 10.21
@@ -41,8 +41,8 @@ BuildRequires:	tar >= 1:1.22
 BuildRequires:	vala
 BuildRequires:	xz
 Requires:	fribidi >= 0.19.7
-Requires:	glib2 >= 1:2.70
-Requires:	gtk4 >= 4.5
+Requires:	glib2 >= 1:2.72
+Requires:	gtk4 >= 4.6
 Requires:	libxml2 >= 1:2.6.31
 Requires:	pcre2-8 >= 10.21
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -64,8 +64,8 @@ Summary(pl.UTF-8):	Pliki nagłówkowe dla GtkSourceView
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	fribidi-devel >= 0.19.7
-Requires:	glib2-devel >= 1:2.70
-Requires:	gtk4-devel >= 4.5
+Requires:	glib2-devel >= 1:2.72
+Requires:	gtk4-devel >= 4.6
 Requires:	libxml2-devel >= 1:2.6.31
 Requires:	pcre2-8-devel >= 10.21
 
