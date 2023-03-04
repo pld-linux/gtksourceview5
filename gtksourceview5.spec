@@ -9,12 +9,12 @@
 Summary:	Text widget that extends the standard GTK+ 3.x
 Summary(pl.UTF-8):	Widget tekstowy rozszerzający standardowy z GTK+ 3.x
 Name:		gtksourceview5
-Version:	5.6.1
+Version:	5.6.2
 Release:	1
 License:	LGPL v2+ (library), GPL v2+ (some language specs files)
 Group:		X11/Libraries
 Source0:	https://download.gnome.org/sources/gtksourceview/5.6/gtksourceview-%{version}.tar.xz
-# Source0-md5:	5fc634b04fbdbfcc17f9f8d85f817b60
+# Source0-md5:	7ed8742eae6c1932b478014f891a2b97
 Patch0:		%{name}-no-update.patch
 URL:		https://wiki.gnome.org/Projects/GtkSourceView
 BuildRequires:	docbook-dtd412-xml
