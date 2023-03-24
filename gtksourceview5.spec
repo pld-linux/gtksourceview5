@@ -10,7 +10,7 @@ Summary:	Text widget that extends the standard GTK+ 3.x
 Summary(pl.UTF-8):	Widget tekstowy rozszerzający standardowy z GTK+ 3.x
 Name:		gtksourceview5
 Version:	5.8.0
-Release:	1
+Release:	2
 License:	LGPL v2+ (library), GPL v2+ (some language specs files)
 Group:		X11/Libraries
 Source0:	https://download.gnome.org/sources/gtksourceview/5.8/gtksourceview-%{version}.tar.xz
@@ -139,6 +139,9 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_gtkdocdir}
 %{__mv} $RPM_BUILD_ROOT%{_docdir}/gtksourceview5 $RPM_BUILD_ROOT%{_gtkdocdir}
 %endif
+
+# not supported by glibc (as of 2.37)
+%{__rm} -r $RPM_BUILD_ROOT%{_localedir}/ie
 
 %find_lang gtksourceview-5
 
