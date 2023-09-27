@@ -91,7 +91,6 @@ Statyczna biblioteka GtkSourceView.
 Summary:	GtkSourceView API documentation
 Summary(pl.UTF-8):	Dokumentacja API GtkSourceView
 Group:		Documentation
-Requires:	gtk-doc-common
 BuildArch:	noarch
 
 %description apidocs
