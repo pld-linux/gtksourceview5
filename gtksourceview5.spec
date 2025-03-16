@@ -115,7 +115,7 @@ API GtkSourceView dla języka Vala.
 
 %prep
 %setup -q -n gtksourceview-%{version}
-%patch0 -p1
+%patch -P0 -p1
 
 %if %{with static_libs}
 %{__sed} -i -e 's/gtksource_lib = shared_library/gtksource_lib = library/' gtksourceview/meson.build
