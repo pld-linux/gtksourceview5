@@ -9,12 +9,12 @@
 Summary:	Text widget that extends the standard GTK+ 3.x
 Summary(pl.UTF-8):	Widget tekstowy rozszerzający standardowy z GTK+ 3.x
 Name:		gtksourceview5
-Version:	5.14.2
+Version:	5.16.0
 Release:	1
 License:	LGPL v2+ (library), GPL v2+ (some language specs files)
 Group:		X11/Libraries
-Source0:	https://download.gnome.org/sources/gtksourceview/5.14/gtksourceview-%{version}.tar.xz
-# Source0-md5:	2eaf1b453b3a9bcba89d63994f3e78b1
+Source0:	https://download.gnome.org/sources/gtksourceview/5.16/gtksourceview-%{version}.tar.xz
+# Source0-md5:	e86f3d4b9be241e81625b1f8d9aa3ff4
 Patch0:		%{name}-no-update.patch
 URL:		https://wiki.gnome.org/Projects/GtkSourceView
 BuildRequires:	docbook-dtd412-xml
@@ -24,17 +24,17 @@ BuildRequires:	gettext-tools >= 0.19.4
 %{?with_apidocs:BuildRequires:	gi-docgen}
 BuildRequires:	glib2-devel >= 1:2.72
 BuildRequires:	gobject-introspection-devel >= 1.70.0
-BuildRequires:	gtk4-devel >= 4.6
+BuildRequires:	gtk4-devel >= 4.17
 BuildRequires:	itstool
 BuildRequires:	libxml2-devel >= 1:2.6.31
-BuildRequires:	meson >= 0.60.0
+BuildRequires:	meson >= 1.0.0
 BuildRequires:	ninja >= 1.5
 BuildRequires:	pango-devel
 BuildRequires:	pcre2-8-devel >= 10.21
 BuildRequires:	pkgconfig
 BuildRequires:	rpm-build >= 4.6
 BuildRequires:	rpm-pythonprov
-BuildRequires:	rpmbuild(macros) >= 2.029
+BuildRequires:	rpmbuild(macros) >= 2.042
 BuildRequires:	sed >= 4.0
 %{?with_sysprof:BuildRequires:	sysprof-devel >= 3.38}
 BuildRequires:	tar >= 1:1.22
@@ -42,7 +42,7 @@ BuildRequires:	vala
 BuildRequires:	xz
 Requires:	fribidi >= 0.19.7
 Requires:	glib2 >= 1:2.72
-Requires:	gtk4 >= 4.6
+Requires:	gtk4 >= 4.17
 Requires:	libxml2 >= 1:2.6.31
 Requires:	pcre2-8 >= 10.21
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -65,7 +65,7 @@ Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	fribidi-devel >= 0.19.7
 Requires:	glib2-devel >= 1:2.72
-Requires:	gtk4-devel >= 4.6
+Requires:	gtk4-devel >= 4.17
 Requires:	libxml2-devel >= 1:2.6.31
 Requires:	pcre2-8-devel >= 10.21
 
@@ -122,16 +122,17 @@ API GtkSourceView dla języka Vala.
 %endif
 
 %build
-%meson build \
+%meson \
 	%{?with_apidocs:-Ddocumentation=true} \
+	-Dintrospection=enabled \
 	%{?with_sysprof:-Dsysprof=true}
 
-%ninja_build -C build
+%meson_build -C build
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%ninja_install -C build
+%meson_install -C build
 
 %if %{with apidocs}
 install -d $RPM_BUILD_ROOT%{_gidocdir}
