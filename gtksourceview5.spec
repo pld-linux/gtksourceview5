@@ -10,7 +10,7 @@ Summary:	Text widget that extends the standard GTK+ 3.x
 Summary(pl.UTF-8):	Widget tekstowy rozszerzający standardowy z GTK+ 3.x
 Name:		gtksourceview5
 Version:	5.16.0
-Release:	1
+Release:	2
 License:	LGPL v2+ (library), GPL v2+ (some language specs files)
 Group:		X11/Libraries
 Source0:	https://download.gnome.org/sources/gtksourceview/5.16/gtksourceview-%{version}.tar.xz
