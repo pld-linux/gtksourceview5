@@ -9,17 +9,18 @@
 Summary:	Text widget that extends the standard GTK+ 3.x
 Summary(pl.UTF-8):	Widget tekstowy rozszerzający standardowy z GTK+ 3.x
 Name:		gtksourceview5
-Version:	5.20.0
+Version:	5.22.0
 Release:	1
 License:	LGPL v2.1+ (library), GPL v2+ (some language specs files)
 Group:		X11/Libraries
-Source0:	https://download.gnome.org/sources/gtksourceview/5.20/gtksourceview-%{version}.tar.xz
-# Source0-md5:	08a754c0b10c05c6e74f77695e6e04ce
+Source0:	https://download.gnome.org/sources/gtksourceview/5.22/gtksourceview-%{version}.tar.xz
+# Source0-md5:	e1c688582e4f747e63797312af020a83
 Patch0:		%{name}-no-update.patch
 URL:		https://wiki.gnome.org/Projects/GtkSourceView
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	fontconfig-devel
 BuildRequires:	fribidi-devel >= 0.19.7
+BuildRequires:	gcc >= 5:3.2
 BuildRequires:	gettext-tools >= 0.19.4
 %{?with_apidocs:BuildRequires:	gi-docgen}
 BuildRequires:	glib2-devel >= 1:2.76
@@ -39,11 +40,11 @@ BuildRequires:	rpmbuild(macros) >= 2.042
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	vala
 BuildRequires:	xz
-Requires:	fribidi >= 0.19.7
-Requires:	glib2 >= 1:2.76
-Requires:	gtk4 >= 4.17
-Requires:	libxml2 >= 1:2.6.31
-Requires:	pcre2-8 >= 10.21
+Requires:	fribidi%{?_isa} >= 0.19.7
+Requires:	glib2%{?_isa} >= 1:2.76
+Requires:	gtk4%{?_isa} >= 4.17
+Requires:	libxml2%{?_isa} >= 1:2.6.31
+Requires:	pcre2-8%{?_isa} >= 10.21
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -61,12 +62,12 @@ dla edytora źródeł.
 Summary:	Header files for GtkSourceView
 Summary(pl.UTF-8):	Pliki nagłówkowe dla GtkSourceView
 Group:		X11/Development/Libraries
-Requires:	%{name} = %{version}-%{release}
-Requires:	fribidi-devel >= 0.19.7
-Requires:	glib2-devel >= 1:2.76
-Requires:	gtk4-devel >= 4.17
-Requires:	libxml2-devel >= 1:2.6.31
-Requires:	pcre2-8-devel >= 10.21
+Requires:	%{name}%{?_isa} = %{version}-%{release}
+Requires:	fribidi-devel%{?_isa} >= 0.19.7
+Requires:	glib2-devel%{?_isa} >= 1:2.76
+Requires:	gtk4-devel%{?_isa} >= 4.17
+Requires:	libxml2-devel%{?_isa} >= 1:2.6.31
+Requires:	pcre2-8-devel%{?_isa} >= 10.21
 
 %description devel
 Header files for GtkSourceView.
@@ -78,7 +79,7 @@ Pliki nagłówkowe dla GtkSourceView.
 Summary:	Static GtkSourceView library
 Summary(pl.UTF-8):	Statyczna biblioteka GtkSourceView
 Group:		X11/Development/Libraries
-Requires:	%{name}-devel = %{version}-%{release}
+Requires:	%{name}-devel%{?_isa} = %{version}-%{release}
 
 %description static
 Static GtkSourceView library.
@@ -147,7 +148,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f gtksourceview-5.lang
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libgtksourceview-5.so.*.*.*
+%{_libdir}/libgtksourceview-5.so.*.*.*
 %ghost %{_libdir}/libgtksourceview-5.so.0
 %{_datadir}/gtksourceview-5
 %{_libdir}/girepository-1.0/GtkSource-5.typelib
